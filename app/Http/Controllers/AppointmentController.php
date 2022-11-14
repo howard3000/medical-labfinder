@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lab;
+use App\Models\TestDetail;
 use Auth;
 use App\Models\Appointment;
 use Validator;
@@ -150,5 +151,11 @@ class AppointmentController extends Controller
         $field=$request->search;
         $find=Lab::where('name','like','%'.$field.'%')->orWhere('tests','like','%'.$field.'%')->get();
         return view('User.search_view')->with(['find'=>$find]);
+    }
+
+    public function viewResults(TestDetail $test_details){
+
+        $test_details =  TestDetail::get();
+        return view('User.view_results', compact('test_details'));
     }
 }

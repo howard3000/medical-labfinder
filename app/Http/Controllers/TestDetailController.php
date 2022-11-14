@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\TestDetail;
 use App\Models\Lab;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class TestDetailController extends Controller
@@ -13,10 +14,13 @@ class TestDetailController extends Controller
         
         return view('Test.index', compact( 'test_details'));
     }
-    public function create(Lab $labs){
+    public function create(Appointment $appointments, Lab $labs){
+        
+        $appointments = Appointment::get();
         $labs = Lab::get();
 
-        return view('Test.create', compact('labs'));
+        // dd($labs);
+        return view('Test.create', compact(['appointments', 'labs']));
     }
     public function store(Request $request){
         

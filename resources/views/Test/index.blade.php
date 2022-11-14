@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+@include('Labowner.header')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body class="g-sidenav-show bg-gray-100">
 
-    <title>Test Details</title>
-    <!-- style-Bootstarp 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    
-</head>
-<body>
-    <a href="{{ url('lab_profile') }}" class="btn btn-secondary m-3">Back To Dashboard</a>
+    @include('Labowner.sidenav')
+
+    <main class="main-content border-radius-lg">
+        @include('Labowner.navbar')
+        @include('Labowner.alerts')
+
     <div class="d-flex justify-content-center">
         <h1>Client Test Results</h1>
     </div>
@@ -59,7 +55,7 @@
         </tbody>
     </table>
 </div>
-
+    </main>
 <script>
        $(document).ready(function() {
             $('#tableId').DataTable({
@@ -76,5 +72,8 @@
             });
         });
 </script>
+ <!--   Core JS Files   -->
+ @include('Labowner.javascript')
 </body>
+
 </html>

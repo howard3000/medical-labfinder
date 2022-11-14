@@ -62,6 +62,7 @@ Route::get('view_user_appointment',[AppointmentController::class,'edit']);
 Route::get('cancel_appointment/{id}',[AppointmentController::class,'cancel']);
 Route::post('search',[AppointmentController::class,'searchforlabortest']);
 Route::any('approve_appointment/{id}',[AppointmentController::class,'approve']);
+Route::get('view-test-results', [AppointmentController::class, 'viewResults']);
 
 Route::controller(MpesaController::class)->group(function(){
     Route::post('stkpush','Stk');
