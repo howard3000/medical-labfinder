@@ -32,13 +32,11 @@
     
                             <div class="col-md-12 mb-3">
                                 <label for="name" class="form-label">Full Name</label>
-                                <select id="name"  name="name" class="form-select mt-2 @error('name') border border-danger @enderror">
-    
-                                    @foreach ($appointments as $appointment) 
-                                        {{-- @if($appointment->status === 'Approved')                                    --}}
-                                        <option value="{{ $appointment->fullname }}">{{ $appointment->fullname }}</option>
-                                        {{-- @endif --}}
-                                    @endforeach                            
+                                <select id="name"  name="name" class="form-select mt-2 @error('name') border border-danger @enderror">                                 
+                                        @foreach($appointments as $appointment)                                  
+                                            <option value="{{ $appointment->fullname }}">{{ $appointment->fullname }}</option>
+                                        @endforeach                                
+                                                     
                                 </select>
                                 @error('name')
                                 <div class="danger">{{$message}}</div>
@@ -47,14 +45,20 @@
                             
                             <div class="col-md-12 mb-3">
                                 <label for="date" class="form-label">Date of Test</label>
-                                <input type="date" class="form-select mt-2 @error('date') border border-danger @enderror" name="date" id="date">
+                                @foreach($appointments as $appointment)                                  
+                                    <input type="date" class="form-select mt-2 @error('date') border border-danger @enderror" name="date" id="date" value="{{$appointment->date}}">
+                                @endforeach  
+                                
                                 @error('date')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="test" class="form-label">Test</label>
-                                <select id="test"  name="test" class="form-select mt-2 @error('test') border border-danger @enderror">                            
+                                <select id="test"  name="test" class="form-select mt-2 @error('test') border border-danger @enderror">  
+                                    @foreach($appointments as $appointment)                                  
+                                            <option selected value="{{ $appointment->test }}">{{ $appointment->test }}</option>
+                                        @endforeach                            
                                     <option value="arthritis">arthritis</option>
                                     <option value="blood pressure">blood pressure</option>
                                     <option value="corona">corona</option>

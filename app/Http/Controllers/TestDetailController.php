@@ -5,6 +5,7 @@ use App\Models\TestDetail;
 use App\Models\Lab;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Auth;
 
 class TestDetailController extends Controller
 {
@@ -16,11 +17,14 @@ class TestDetailController extends Controller
     }
     public function create(Appointment $appointments, Lab $labs){
         
-        $appointments = Appointment::get();
-        $labs = Lab::get();
-
+        $lab=Lab::where('user_id',Auth::user()->id)->first();
+        $appointments=Appointment::where('lab_id',$lab->id)->get();
+        
         // dd($labs);
-        return view('Test.create', compact(['appointments', 'labs']));
+        return view('Test.create')->with([
+            'appointments'=>$appointments,
+            'labs' => Lab::get(),
+        ]);
     }
     public function store(Request $request){
         
