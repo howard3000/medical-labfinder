@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TestDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,7 @@ Route::get('view_user_appointment',[AppointmentController::class,'edit']);
 Route::get('cancel_appointment/{id}',[AppointmentController::class,'cancel']);
 Route::post('search',[AppointmentController::class,'searchforlabortest']);
 Route::any('approve_appointment/{id}',[AppointmentController::class,'approve']);
+Route::get('view-test-results', [AppointmentController::class, 'viewResults']);
 
 Route::controller(MpesaController::class)->group(function(){
     Route::post('stkpush','Stk');
@@ -73,6 +75,18 @@ Route::controller(MpesaController::class)->group(function(){
 
 //Report generation
 Route::get('/report', [ReportController::class, 'generateReport'])->name('report.genRep');
+
+
+//test_details
+Route::get('view-test-details', [TestDetailController::class, 'index'])->name('test.index');
+Route::get('test-details', [TestDetailController::class, 'create'])->name('test.create');
+Route::post('test-details', [TestDetailController::class, 'store']);
+Route::get('test-details/{test_detail}/edit', [TestDetailController::class, 'edit'])->name('test.edit');
+// Route::get('test-details/{post}', [TestDetailController::class, 'show'])->name('test.show');
+Route::put('test-details/{test_detail}', [TestDetailController::class, 'update'])->name('test.update');
+Route::delete('test-details/{test_detail}', [TestDetailController::class, 'destroy'])->name('test.destroy');
+
+
 
 
 require __DIR__.'/auth.php';
