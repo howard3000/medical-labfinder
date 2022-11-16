@@ -21,7 +21,7 @@ class TestDetailsPolicy
     }
     public function edit(User $user, TestDetail $test_detail){
 
-        return $user->id = $test_detail->user_id;
+        return $user->id === $test_detail->user_id;
     }
     public function show($id){
 
